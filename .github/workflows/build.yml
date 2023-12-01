@@ -30,10 +30,13 @@ jobs:
     - name: unit tests
       run: dotnet test bp\BPCalculator\BPCalculator.csproj --no-restore --collect "Code coverage" -l:trx
 
+    - name: troubleshooting dir
+      run: dir /a bp\BPCalculator
+
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
       with:
-        path: 'bp\BPCalculator\TestResults'
+        path: 'bp\BPCalculator\TestResults\*.trx'
         name: MS Tests
         reporter: 'dotnet-trx'
         
