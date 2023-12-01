@@ -11,17 +11,20 @@ on:
 
 jobs:
   build:
-    runs-on: alpine-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
+    - name: .NET Lint
+      uses: zyactions/dotnet-lint@v1
+      with:
+        workspace: bp/BPcalculator.csproj
+        implicit-restore: true
+
     - name: open bp folder
       run: cd bp
-
-    - name: Setup .NET
-      run: apk add dotnet6-sdk
 
     - name: Build Application
       run: dotnet build --configuration Release
