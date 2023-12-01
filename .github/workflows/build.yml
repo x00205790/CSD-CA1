@@ -33,10 +33,10 @@ jobs:
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
       with:
-        artifact: ''
+        artifact: 'bp\BPCalculator\TestResults\*.trx'
         name: MS Tests
-        path: '**.trx'
-        reporter: 'bp\BPCalculator\TestResults\dotnet-trx'
+        reporter: 'dotnet-trx'
+        
     
     - name: Publish
       run: dotnet publish -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
