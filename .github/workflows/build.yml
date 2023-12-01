@@ -28,11 +28,11 @@ jobs:
         dotnet build --configuration Release
 
     - name: unit tests
-      run: dotnet test bp\BPCalculator\BPCalculator.csproj --no-restore --collect "Code coverage" -l:trx
-
-    - name: troubleshooting dir
-      run: dir /a bp\BPCalculator
-
+      run: |
+        dotnet test bp\BPCalculator\BPCalculator.csproj --no-restore --collect "Code coverage" -l:trx
+        cd
+        dir /a 
+        
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
       with:
