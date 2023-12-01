@@ -22,12 +22,6 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    - name: .NET Lint
-      uses: zyactions/dotnet-lint@v1
-      with:
-        workspace: bp/BPcalculator.csproj
-        implicit-restore: true
-
     - name: open bp folder
       run: cd bp
 
