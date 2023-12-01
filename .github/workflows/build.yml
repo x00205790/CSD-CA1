@@ -1,0 +1,41 @@
+name: BMI_deployment
+
+env:
+  AZ_WEBAPP_NAME: cd-bmicalculator
+  AZ_WEBAPP_PACKAGE_PATH: 'publish'
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: alpine-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: open bp folder
+      run: cd bp
+
+    - name: Setup .NET
+      run: apk add dotnet6-sdk
+
+    - name: Build Application
+      run: dotnet build --configuration Release
+
+    - name: unit tests
+      run: dotnet test bp/BPCalculator.csproj --no-restore --collect "Code coverage" -l:trx
+
+    - name: Publish Unit Test Results
+      uses: dorny/test-reporter@v1
+      with:
+        artifact: ''
+        name: MS Tests
+        path: '**.trx'
+        reporter: 'dotnet-trx'
+    
+    - name: Publish
+      run: dotnet publish -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
