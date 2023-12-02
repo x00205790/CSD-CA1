@@ -29,7 +29,7 @@ jobs:
 
     - name: unit tests
       run: |
-        dotnet test bp\BPCalculator\BPCalculator.csproj --no-restore o-restore --collect "Code coverage"
+        dotnet test bp\BPCalculator\BPCalculator.csproj --no-restore --collect "Code coverage"
 
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
