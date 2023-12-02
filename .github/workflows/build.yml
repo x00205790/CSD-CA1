@@ -30,16 +30,15 @@ jobs:
 
     - name: unit tests
       run: |
-        dotnet test $UNIT_TEST bp\BPCalculator\BPCalculator.csproj --logger "trx;LogFileName=test-results.trx" || true
+        dotnet test $UNIT_TEST bp\BPCalculator\BPCalculator.csproj ---no-restore --collect "Code coverage" -l:trx
 
-    - name: Test Report
+    - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
-      if: always()
       with:
-        name: DotNET Tests
-        path: "**/test-results.trx"                            
-        reporter: dotnet-trx
-        fail-on-error: true    
+        artifact: ''
+        name: MS Tests                  
+        path: '**.trx'
+        reporter: 'dotnet-trx'  
     
     - name: Publish
       run: dotnet publish -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
