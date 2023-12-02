@@ -35,7 +35,7 @@ jobs:
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
       with:
-        path: 'bp\BPCalculator\TestResults\*.trx'
+        path: 'bp\BPCalculator\*.trx'
         name: MS Tests
         reporter: 'dotnet-trx'
         
