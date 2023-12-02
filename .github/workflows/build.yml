@@ -30,7 +30,8 @@ jobs:
     - name: unit tests
       run: |
         dotnet test bp\BPCalculator\BPCalculator.csproj --no-restore --logger "trx;LogFileName=test-results.trx" || true
-        dir bp\BPCalculator\
+        dir bp\BPCalculator\bin
+        dir bp\BPCalculator\obj
 
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
