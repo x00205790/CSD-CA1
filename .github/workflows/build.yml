@@ -35,4 +35,4 @@ jobs:
         reporter: 'dotnet-trx'  
     
     - name: Publish
-      run: dotnet publish -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
+      run: dotnet publish bp/BPCalculator/BPCalculator.csproj -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
