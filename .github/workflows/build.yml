@@ -29,7 +29,7 @@ jobs:
 
     - name: unit tests
       run: |
-        dotnet test bp\BPCalculator\BPCalculator.csproj --no-restore --logger "trx;LogFileName=test-results.trx" || true
+        dotnet test bp\BPCalculator\BPCalculator.csproj --no-restore --logger "trx;LogFileName=D:\a\CSD-CA1\CSD-CA1\bp\BPCalculator\test-results.trx" || true
         dir bp\BPCalculator\bin
         dir bp\BPCalculator\obj
 
