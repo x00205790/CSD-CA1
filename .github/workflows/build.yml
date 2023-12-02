@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
@@ -24,20 +24,16 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Build Application
-      run: |
-        cd bp\BPCalculator
-        dotnet build --configuration Release
+      run: dotnet build bp/BPCalculator --configuration Release
 
     - name: unit tests
-      run: |
-        dotnet test $UNIT_TEST bp\BPCalculator\BPCalculator.csproj --no-restore --collect "Code coverage" -l:trx
+      run: dotnet test bp/testing/unitTestProj.csproj --configuration Release --logger "trx;LogFileName=test-results.trx" || true
 
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
       with:
-        artifact: ''
-        name: MS Tests                  
-        path: '**.trx'
+        name: DotNet Tests                  
+        path: '**/test-results.trx'
         reporter: 'dotnet-trx'  
     
     - name: Publish
