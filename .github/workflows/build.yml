@@ -30,8 +30,7 @@ jobs:
     - name: unit tests
       run: |
         dotnet test bp\BPCalculator\BPCalculator.csproj --no-restore --collect "Code coverage" -l:trx
-        echo cd
-        echo off & dir
+        echo dir /s /b /o:gn
 
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
