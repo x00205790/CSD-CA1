@@ -3,6 +3,7 @@ name: BMI_deployment
 env:
   AZ_WEBAPP_NAME: cd-bmicalculator
   AZ_WEBAPP_PACKAGE_PATH: 'publish'
+  UNIT_TEST: 'bp\UnitTest.sln'
 
 on:
   push:
@@ -29,15 +30,16 @@ jobs:
 
     - name: unit tests
       run: |
-        dotnet test bp\BPCalculator\BPCalculator.csproj --no-restore --collect "Code coverage"
+        dotnet test $UNIT_TEST bp\BPCalculator\BPCalculator.csproj --logger "trx;LogFileName=test-results.trx" || true
 
-    - name: Publish Unit Test Results
+    - name: Test Report
       uses: dorny/test-reporter@v1
+      if: always()
       with:
-        artifact: ''
-        name: MS Tests                  
-        path: '**.trx'
-        reporter: 'dotnet-trx'        
+        name: DotNET Tests
+        path: "**/test-results.trx"                            
+        reporter: dotnet-trx
+        fail-on-error: true    
     
     - name: Publish
       run: dotnet publish -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
