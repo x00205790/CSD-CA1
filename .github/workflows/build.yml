@@ -25,7 +25,20 @@ jobs:
       run: dotnet build bp/BPCalculator --configuration Release
 
     - name: unit tests
-      run: dotnet test bp/testing/unitTestProj.csproj --configuration Release --logger "trx;LogFileName=test-results.trx" || true
+      run: |
+        dotnet test bp/testing/unitTestProj.csproj --configuration Release --logger "trx;LogFileName=test-results.trx" || true
+        dotnet test  -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal BPCalculator.Tests/
+
+    - name: Create Test Coverage Badge
+      uses: simon-k/dotnet-code-coverage-badge@v1.0.0
+      id: create_coverage_badge
+      with:
+        label: Unit Test Coverage
+        color: brightgreen
+        path: BPCalculator.Tests/TestResults/coverage.opencover.xml
+        gist-filename: code-coverage.json
+        gist-id: 39415c64e57c913926b4a9c23b7bd3a9
+        gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
 
     - name: Publish Unit Test Results
       uses: dorny/test-reporter@v1
@@ -36,3 +49,4 @@ jobs:
     
     - name: Publish
       run: dotnet publish bp/BPCalculator/BPCalculator.csproj -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
+
