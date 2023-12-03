@@ -1,7 +1,7 @@
-name: BMI_deployment
+name: BP_deployment
 
 env:
-  AZ_WEBAPP_NAME: cd-bmicalculator
+  AZ_WEBAPP_NAME: cd-bpcalculator
   AZ_WEBAPP_PACKAGE_PATH: 'publish'
 
 on:
