@@ -27,7 +27,7 @@ jobs:
     - name: unit tests
       run: |
         dotnet test bp/testing/unitTestProj.csproj --configuration Release --logger "trx;LogFileName=test-results.trx" || true
-        dotnet test bp/testing/unitTestProj.csproj /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=opencover --verbosity normal
+        dotnet test bp/testing/unitTestProj.csproj /p:CollectCoverage=true /p:CoverletOutput=bp/testing/TestResults/ /p:CoverletOutputFormat=opencover --verbosity normal
 
     - name: Create Test Coverage Badge
       uses: simon-k/dotnet-code-coverage-badge@v1.0.0
