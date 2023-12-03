@@ -27,7 +27,7 @@ jobs:
     - name: unit tests
       run: |
         dotnet test bp/testing/unitTestProj.csproj --configuration Release --logger "trx;LogFileName=test-results.trx" || true
-        dotnet test  -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal BPCalculator.Tests/
+        dotnet test  -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build --verbosity normal bp/testing/unitTestProj.csproj
 
     - name: Create Test Coverage Badge
       uses: simon-k/dotnet-code-coverage-badge@v1.0.0
@@ -35,7 +35,7 @@ jobs:
       with:
         label: Unit Test Coverage
         color: brightgreen
-        path: BPCalculator.Tests/TestResults/coverage.opencover.xml
+        path: bp/testing/TestResults/coverage.opencover.xml
         gist-filename: code-coverage.json
         gist-id: 39415c64e57c913926b4a9c23b7bd3a9
         gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
