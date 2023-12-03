@@ -41,7 +41,7 @@ jobs:
         gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
 
     - name: Publish Code Coverage
-      uses: b3b00/coverlet-action@1.2.7
+      uses: coverlet-coverage/coverlet@6.0.0
       with:
         files: bp/testing/TestResults/coverage.opencover.xml
         githubToken: ${{ secrets.GITHUB_TOKEN }}
