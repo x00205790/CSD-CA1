@@ -48,7 +48,7 @@ namespace bpUnitTestProject
             // Blood pressure values that fall outside the specified ranges
             BloodPressure bloodPressure = new BloodPressure() { Systolic = 50, Diastolic = 130 };
 
-            // Expecting an exception to be thrown
+            // Exception check
             Assert.ThrowsException<InvalidOperationException>(() => bloodPressure.Category);
         }
     }
