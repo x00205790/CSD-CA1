@@ -11,7 +11,7 @@ namespace BPCalculator
         [Display(Name="Ideal Blood Pressure")] Ideal,
         [Display(Name="Pre-High Blood Pressure")] PreHigh,
         [Display(Name="High Blood Pressure")] High,
-        [Display(Name="High Blood Pressure")] Emergency,
+        [Display(Name="Emergency, seek medical help immediately")] Emergency,
     };
 
     public class BloodPressure
