@@ -45,11 +45,37 @@ namespace bpUnitTestProject
         [TestMethod]
         public void TestInvalidBloodPressure()
         {
-            // Blood pressure values that fall outside the specified ranges
             BloodPressure bloodPressure = new BloodPressure() { Systolic = 50, Diastolic = 130 };
 
-            // Exception check
             Assert.ThrowsException<InvalidOperationException>(() => bloodPressure.Category);
+        }
+
+        [TestMethod]
+        public void TestMinimumValidBloodPressure()
+        {
+            BloodPressure bloodPressure = new BloodPressure() { Systolic = 70, Diastolic = 40 };
+            Assert.AreEqual(BPCategory.Low, bloodPressure.Category);
+        }
+
+        [TestMethod]
+        public void TestMaximumValidBloodPressure()
+        {
+            BloodPressure bloodPressure = new BloodPressure() { Systolic = 190, Diastolic = 120 };
+            Assert.AreEqual(BPCategory.Emergency, bloodPressure.Category);
+        }
+
+        [TestMethod]
+        public void TestUpperBoundaryBloodPressure()
+        {
+            BloodPressure bloodPressure = new BloodPressure() { Systolic = 180, Diastolic = 115 };
+            Assert.AreEqual(BPCategory.Emergency, bloodPressure.Category);
+        }
+
+        [TestMethod]
+        public void TestLowerBoundaryBloodPressure()
+        {
+            BloodPressure bloodPressure = new BloodPressure() { Systolic = 75, Diastolic = 45 };
+            Assert.AreEqual(BPCategory.Low, bloodPressure.Category);
         }
     }
 }
