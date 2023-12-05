@@ -61,20 +61,20 @@ jobs:
         dotnet new sln --force
         dotnet sln add BPCalculator.csproj
         ls -la
-
+    
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/dotnet@master 
       continue-on-error: true # To make sure that SARIF upload gets called
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
-        args: --sarif-file-output=snyk.sarif --file=/home/runner/work/CSD-CA1/CSD-CA1/bp/BPCalculator/BPCalculator.sln --severity-threshold=medium
+        args: --sarif-file-output=snyk.sarif  --severity-threshold=medium
 
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: snyk.sarif
-
+        
     - name: Publish
       run: dotnet publish bp/BPCalculator/BPCalculator.csproj -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
 
