@@ -57,7 +57,9 @@ jobs:
 
     - name: Run Snyk to check for vulnerabilities
       run: |
-        curl -fsSL https://install.snyk.io/unix/setup.sh | sh
+        curl --compressed https://static.snyk.io/cli/latest/snyk-linux
+        chmod +x ./snyk
+        mv ./snyk /usr/local/bin
         snyk auth ${{ secrets.SNYK_TOKEN }}
         snyk test bp/BPCalculator/ --sarif-file-output=snyk.sarif
     
