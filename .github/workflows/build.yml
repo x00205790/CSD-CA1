@@ -58,6 +58,8 @@ jobs:
     - name: Prep for Snyk
       run: |
         cd bp/BPCalculator/   
+        dotnet new sln --force
+        dotnet sln add BPCalculator.csproj
 
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/dotnet@master 
