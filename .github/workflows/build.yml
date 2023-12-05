@@ -55,24 +55,16 @@ jobs:
         path: '/home/runner/work/CSD-CA1/CSD-CA1/bp/testing/TestResults/test-results.trx'
         reporter: 'dotnet-trx'  
 
-    - name: change to dir for Snyk
-      run: cd bp/BPCalculator/
-
     - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/dotnet@master
-      continue-on-error: true 
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --sarif-file-output=snyk.sarif
+      run: |
+        curl -fsSL https://install.snyk.io/unix/setup.sh | sh
+        snyk auth ${{ secrets.SNYK_TOKEN }}
+        snyk test bp/BPCalculator/ --sarif-file-output=snyk.sarif
     
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: snyk.sarif
-
-    - name: return to top level dir
-      run: cd ../../
 
     - name: Publish
       run: dotnet publish bp/BPCalculator/BPCalculator.csproj -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'

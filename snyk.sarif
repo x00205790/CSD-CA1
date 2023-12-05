@@ -1,0 +1,446 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Snyk Open Source",
+          "rules": [
+            {
+              "id": "SNYK-DOTNET-NUGETCOMMON-5709252",
+              "shortDescription": {
+                "text": "High severity - Remote Code Execution (RCE) vulnerability in NuGet.Common"
+              },
+              "fullDescription": {
+                "text": "(CVE-2023-29337) NuGet.Common@5.11.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: NuGet.Common\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › NuGet.ProjectModel@5.11.0 › NuGet.DependencyResolver.Core@5.11.0 › NuGet.LibraryModel@5.11.0 › NuGet.Common@5.11.0\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › NuGet.ProjectModel@5.11.0 › NuGet.DependencyResolver.Core@5.11.0 › NuGet.Protocol@5.11.0 › NuGet.Packaging@5.11.0 › NuGet.Configuration@5.11.0 › NuGet.Common@5.11.0\n# Overview\n\nAffected versions of this package are vulnerable to Remote Code Execution (RCE). A vulnerability exists in NuGet where a race condition can lead to a symlink attack.\r\n\r\n**Note:**\r\n\r\nNon-Linux platforms are not affected.\n# Remediation\nUpgrade `NuGet.Common` to version 6.0.5, 6.2.4, 6.3.3, 6.4.2, 6.5.1, 6.6.1 or higher.\n# References\n- [Advisory](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-29337)\n- [GitHub Issue](https://github.com/dotnet/announcements/issues/256)\n- [RedHat Bugzilla Bug](https://bugzilla.redhat.com/show_bug.cgi?id=2213703)\n- [Release](https://github.com/dotnet/core/blob/c73158b8ef08db362585f9ed16b97c1d1372c666/release-notes/6.0/6.0.18/6.0.18.md)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-94",
+                  "nuget"
+                ]
+              }
+            },
+            {
+              "id": "SNYK-DOTNET-NUGETPROTOCOL-3043006",
+              "shortDescription": {
+                "text": "High severity - Privilege Escalation vulnerability in NuGet.Protocol"
+              },
+              "fullDescription": {
+                "text": "(CVE-2022-41032) NuGet.Protocol@5.11.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: NuGet.Protocol\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › NuGet.ProjectModel@5.11.0 › NuGet.DependencyResolver.Core@5.11.0 › NuGet.Protocol@5.11.0\n# Overview\n\nAffected versions of this package are vulnerable to Privilege Escalation by allowing a malicious actor to cause a user to execute arbitrary code.\n# Remediation\nUpgrade `NuGet.Protocol` to version 4.9.6, 5.7.3, 5.9.3, 5.11.3, 6.0.3, 6.2.2, 6.3.1 or higher.\n# References\n- [GitHub Commit](https://github.com/NuGet/NuGet.Client/commit/6392863cf83f4870e18f1d02f2463cca633e59ed)\n- [GitHub Issue](https://github.com/NuGet/Announcements/issues/65)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-264",
+                  "nuget"
+                ]
+              }
+            },
+            {
+              "id": "SNYK-DOTNET-NUGETPROTOCOL-5709254",
+              "shortDescription": {
+                "text": "High severity - Remote Code Execution (RCE) vulnerability in NuGet.Protocol"
+              },
+              "fullDescription": {
+                "text": "(CVE-2023-29337) NuGet.Protocol@5.11.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: NuGet.Protocol\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › NuGet.ProjectModel@5.11.0 › NuGet.DependencyResolver.Core@5.11.0 › NuGet.Protocol@5.11.0\n# Overview\n\nAffected versions of this package are vulnerable to Remote Code Execution (RCE). A vulnerability exists in NuGet where a race condition can lead to a symlink attack.\r\n\r\n**Note:**\r\n\r\nNon-Linux platforms are not affected.\n# Remediation\nUpgrade `NuGet.Protocol` to version 6.0.5, 6.2.4, 6.3.3, 6.4.2, 6.5.1, 6.6.1 or higher.\n# References\n- [Advisory](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-29337)\n- [GitHub Issue](https://github.com/dotnet/announcements/issues/256)\n- [RedHat Bugzilla Bug](https://bugzilla.redhat.com/show_bug.cgi?id=2213703)\n- [Release](https://github.com/dotnet/core/blob/c73158b8ef08db362585f9ed16b97c1d1372c666/release-notes/6.0/6.0.18/6.0.18.md)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-94",
+                  "nuget"
+                ]
+              }
+            },
+            {
+              "id": "SNYK-DOTNET-SYSTEMDRAWINGCOMMON-3063427",
+              "shortDescription": {
+                "text": "High severity - Remote Code Execution (RCE) vulnerability in System.Drawing.Common"
+              },
+              "fullDescription": {
+                "text": "(CVE-2021-24112) System.Drawing.Common@4.7.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: System.Drawing.Common\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › Microsoft.Build@16.9.0 › Microsoft.Build.Framework@16.9.0 › System.Security.Permissions@4.7.0 › System.Windows.Extensions@4.7.0 › System.Drawing.Common@4.7.0\n# Overview\n\nAffected versions of this package are vulnerable to Remote Code Execution (RCE) when parsing certain types of graphics files.\r\n\r\n**Note:**\r\nThis vulnerability only impacts systems running non-Windows.\n# Remediation\nUpgrade `System.Drawing.Common` to version 4.7.2, 5.0.3 or higher.\n# References\n- [GitHub Issue](https://github.com/dotnet/announcements/issues/176)\n- [Microsoft Security Advisory](https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2021-24112)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-94",
+                  "nuget"
+                ]
+              }
+            },
+            {
+              "id": "SNYK-DOTNET-SYSTEMNETHTTP-60045",
+              "shortDescription": {
+                "text": "High severity - Denial of Service (DoS) vulnerability in System.Net.Http"
+              },
+              "fullDescription": {
+                "text": "(CVE-2017-0247) System.Net.Http@4.3.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: System.Net.Http\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › Microsoft.CodeAnalysis.CSharp.Features@4.0.0 › Humanizer.Core@2.2.0 › NETStandard.Library@1.6.1 › System.Net.Http@4.3.0\n# Overview\n\n[System.Net.Http](https://www.nuget.org/packages/System.Net.Http/) is an Provides a programming interface for modern HTTP applications, including HTTP client components that allow applications to consume web services over HTTP and HTTP components that can be used by both clients and servers for parsing HTTP headers.\n\n\nAffected versions of this package are vulnerable to Denial of Service (DoS)\nas `ASP.NET Core` fails to properly validate web requests.\r\n\r\n**NOTE:** Microsoft has not commented on third-party claims that the issue is that the `TextEncoder.EncodeCore` function in the `System.Text.Encodings.Web` package in ASP.NET Core Mvc before 1.0.4 and 1.1.x before 1.1.3 allows remote attackers to cause a denial of service by leveraging failure to properly calculate the length of 4-byte characters in the Unicode Non-Character range.\n\n# Details\nDenial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its intended and legitimate users.\r\n\r\nUnlike other vulnerabilities, DoS attacks usually do not aim at breaching security. Rather, they are focused on making websites and services unavailable to genuine users resulting in downtime.\r\n\r\nOne popular Denial of Service vulnerability is DDoS (a Distributed Denial of Service), an attack that attempts to clog network pipes to the system by generating a large volume of traffic from many machines.\r\n\r\nWhen it comes to open source libraries, DoS vulnerabilities allow attackers to trigger such a crash or crippling of the service by using a flaw either in the application code or from the use of open source libraries.\r\n\r\nTwo common types of DoS vulnerabilities:\r\n\r\n* High CPU/Memory Consumption- An attacker sending crafted requests that could cause the system to take a disproportionate amount of time to process. For example, [commons-fileupload:commons-fileupload](SNYK-JAVA-COMMONSFILEUPLOAD-30082).\r\n\r\n* Crash - An attacker sending crafted requests that could cause the system to crash. For Example,  [npm `ws` package](npm:ws:20171108)\n\n# Remediation\n\nUpgrade `System.Net.Http` to version 4.1.2, 4.3.2 or higher.\n\n\n# References\n\n- [GitHub Issue](https://github.com/aspnet/Announcements/issues/239)\n\n- [Microsoft Security Advisory](https://technet.microsoft.com/en-us/library/security/4021279.aspx)\n\n- [NVD](https://nvd.nist.gov/vuln/detail/CVE-2017-0247)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-254",
+                  "nuget"
+                ]
+              }
+            },
+            {
+              "id": "SNYK-DOTNET-SYSTEMNETHTTP-60046",
+              "shortDescription": {
+                "text": "High severity - Improper Certificate Validation vulnerability in System.Net.Http"
+              },
+              "fullDescription": {
+                "text": "(CVE-2017-0248) System.Net.Http@4.3.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: System.Net.Http\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › Microsoft.CodeAnalysis.CSharp.Features@4.0.0 › Humanizer.Core@2.2.0 › NETStandard.Library@1.6.1 › System.Net.Http@4.3.0\n# Overview\n[System.Net.Http](https://www.nuget.org/packages/System.Net.Http/) is a Provides a programming interface for modern HTTP applications, including HTTP client components that allow applications to consume web services over HTTP and HTTP components that can be used by both clients and servers for parsing HTTP headers.\n\nAffected versions of this package are vulnerable to Improper Certificate Validation. It allows an attacker to bypass _Enhanced Security Usage_ tagging when they present a certificate that is invalid for a specific use.\n# Remediation\nUpgrade `System.Net.Http` to version 4.1.2, 4.3.2 or higher.\n# References\n- [GitHub Issue](https://github.com/aspnet/Announcements/issues/239)\n- [Microsoft Security Advisory](https://technet.microsoft.com/en-us/library/security/4021279.aspx)\n- [NVD](https://nvd.nist.gov/vuln/detail/2017-0248)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-287",
+                  "nuget"
+                ]
+              }
+            },
+            {
+              "id": "SNYK-DOTNET-SYSTEMNETHTTP-60047",
+              "shortDescription": {
+                "text": "High severity - Privilege Escalation vulnerability in System.Net.Http"
+              },
+              "fullDescription": {
+                "text": "(CVE-2017-0249) System.Net.Http@4.3.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: System.Net.Http\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › Microsoft.CodeAnalysis.CSharp.Features@4.0.0 › Humanizer.Core@2.2.0 › NETStandard.Library@1.6.1 › System.Net.Http@4.3.0\n# Overview\n\n[System.Net.Http](https://www.nuget.org/packages/System.Net.Http/) Provides a programming interface for modern HTTP applications, including HTTP client components that allow applications to consume web services over HTTP and HTTP components that can be used by both clients and servers for parsing HTTP headers.\n\n\nAffected versions of this package are vulnerable to Privilege Escalation\ndue to failing to properly sanitize web requests.\n\n# Remediation\n\nUpgrade `System.Net.Http` to version 4.1.2, 4.3.2 or higher.\n\n\n# References\n\n- [GitHub Issue](https://github.com/aspnet/Announcements/issues/239)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-269",
+                  "nuget"
+                ]
+              }
+            },
+            {
+              "id": "SNYK-DOTNET-SYSTEMNETHTTP-60048",
+              "shortDescription": {
+                "text": "Medium severity - Authentication Bypass vulnerability in System.Net.Http"
+              },
+              "fullDescription": {
+                "text": "(CVE-2017-0256) System.Net.Http@4.3.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: System.Net.Http\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › Microsoft.CodeAnalysis.CSharp.Features@4.0.0 › Humanizer.Core@2.2.0 › NETStandard.Library@1.6.1 › System.Net.Http@4.3.0\n# Overview\nThe ASP.NET Core fails to properly sanitize the _Web Request Handler_ component, allowing an attacker to spoof web requests and bypass authentication.\n\n# References\n- [GitHub Issue](https://github.com/aspnet/Announcements/issues/239)\n- [Microsoft Security Advisory](https://technet.microsoft.com/en-us/library/security/4021279.aspx)\n- [NVD](https://nvd.nist.gov/vuln/detail/2017-0256)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-20",
+                  "nuget"
+                ]
+              }
+            },
+            {
+              "id": "SNYK-DOTNET-SYSTEMNETHTTP-72439",
+              "shortDescription": {
+                "text": "High severity - Information Exposure vulnerability in System.Net.Http"
+              },
+              "fullDescription": {
+                "text": "(CVE-2018-8292) System.Net.Http@4.3.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: System.Net.Http\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › Microsoft.CodeAnalysis.CSharp.Features@4.0.0 › Humanizer.Core@2.2.0 › NETStandard.Library@1.6.1 › System.Net.Http@4.3.0\n# Overview\n\n[System.Net.Http](https://www.nuget.org/packages/System.Net.Http/) Provides a programming interface for modern HTTP applications, including HTTP client components that allow applications to consume web services over HTTP and HTTP components that can be used by both clients and servers for parsing HTTP headers.\n\n\nAffected versions of this package are vulnerable to Information Exposure.\nWhen HTTP authentication information is inadvertently exposed in an outbound request that encounters an HTTP redirect. An attacker who successfully exploited this vulnerability could use the information to further compromise the web application.\r\n\r\n**Note:** The presence of `System.Net.Http` in the dependency graph of `netcoreapp2.0` isn't the final determination of what is loaded at runtime. The version conflict resolution logic will prefer what is present in `Microsoft.NETCore.App/2.1.5`, or the latest patch release. As such, is not considered an issue.\n\n# Remediation\n\nUpgrade `System.Net.Http` to version 2.0.20710, 4.0.1-beta-23225, 4.1.4, 4.3.4 or higher.\n\n\n# References\n\n- [GitHub Issue](https://github.com/dotnet/announcements/issues/88)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-200",
+                  "nuget"
+                ]
+              }
+            },
+            {
+              "id": "SNYK-DOTNET-SYSTEMSECURITYCRYPTOGRAPHYXML-2977914",
+              "shortDescription": {
+                "text": "Medium severity - Improper Restriction of XML External Entity Reference vulnerability in System.Security.Cryptography.Xml"
+              },
+              "fullDescription": {
+                "text": "(CVE-2022-34716) System.Security.Cryptography.Xml@4.7.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: System.Security.Cryptography.Xml\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › Microsoft.Build.Tasks.Core@16.9.0 › System.Security.Cryptography.Xml@4.7.0\n# Overview\n\nAffected versions of this package are vulnerable to Improper Restriction of XML External Entity Reference during the `XML` signature verification process.\n# Remediation\nUpgrade `System.Security.Cryptography.Xml` to version 4.7.1, 6.0.1 or higher.\n# References\n- [GitHub Issue](https://github.com/dotnet/announcements/issues/232)\n- [GitHub Issue](https://github.com/dotnet/aspnetcore/issues/43166)\n- [Microsoft Disclosure](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-34716)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-611",
+                  "nuget"
+                ]
+              }
+            },
+            {
+              "id": "SNYK-DOTNET-SYSTEMTEXTREGULAREXPRESSIONS-174708",
+              "shortDescription": {
+                "text": "High severity - Regular Expression Denial of Service (ReDoS) vulnerability in System.Text.RegularExpressions"
+              },
+              "fullDescription": {
+                "text": "(CVE-2019-0820) System.Text.RegularExpressions@4.3.0"
+              },
+              "help": {
+                "text": "",
+                "markdown": "* Package Manager: nuget\n* Vulnerable module: System.Text.RegularExpressions\n* Introduced through: BPCalculator@1.0.0, Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 and others\n### Detailed paths\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › Microsoft.CodeAnalysis.CSharp.Features@4.0.0 › Humanizer.Core@2.2.0 › NETStandard.Library@1.6.1 › System.Text.RegularExpressions@4.3.0\n* _Introduced through_: BPCalculator@1.0.0 › Microsoft.VisualStudio.Web.CodeGeneration.Design@6.0.0 › Microsoft.DotNet.Scaffolding.Shared@6.0.0 › Microsoft.CodeAnalysis.CSharp.Features@4.0.0 › Humanizer.Core@2.2.0 › NETStandard.Library@1.6.1 › System.Xml.ReaderWriter@4.3.0 › System.Text.RegularExpressions@4.3.0\n# Overview\n\n[System.Text.RegularExpressions](https://www.nuget.org/packages/System.Text.RegularExpressions/) is a regular expression engine.\n\n\nAffected versions of this package are vulnerable to Regular Expression Denial of Service (ReDoS)\ndue to improperly processing of RegEx strings.\n\n# Details\nDenial of Service (DoS) describes a family of attacks, all aimed at making a system inaccessible to its original and legitimate users. There are many types of DoS attacks, ranging from trying to clog the network pipes to the system by generating a large volume of traffic from many machines (a Distributed Denial of Service - DDoS - attack) to sending crafted requests that cause a system to crash or take a disproportional amount of time to process.\r\n\r\nThe Regular expression Denial of Service (ReDoS) is a type of Denial of Service attack. Regular expressions are incredibly powerful, but they aren't very intuitive and can ultimately end up making it easy for attackers to take your site down.\r\n\r\nLet’s take the following regular expression as an example:\r\n```js\r\nregex = /A(B|C+)+D/\r\n```\r\n\r\nThis regular expression accomplishes the following:\r\n- `A` The string must start with the letter 'A'\r\n- `(B|C+)+` The string must then follow the letter A with either the letter 'B' or some number of occurrences of the letter 'C' (the `+` matches one or more times). The `+` at the end of this section states that we can look for one or more matches of this section.\r\n- `D` Finally, we ensure this section of the string ends with a 'D'\r\n\r\nThe expression would match inputs such as `ABBD`, `ABCCCCD`, `ABCBCCCD` and `ACCCCCD`\r\n\r\nIt most cases, it doesn't take very long for a regex engine to find a match:\r\n\r\n```bash\r\n$ time node -e '/A(B|C+)+D/.test(\"ACCCCCCCCCCCCCCCCCCCCCCCCCCCCD\")'\r\n0.04s user 0.01s system 95% cpu 0.052 total\r\n\r\n$ time node -e '/A(B|C+)+D/.test(\"ACCCCCCCCCCCCCCCCCCCCCCCCCCCCX\")'\r\n1.79s user 0.02s system 99% cpu 1.812 total\r\n```\r\n\r\nThe entire process of testing it against a 30 characters long string takes around ~52ms. But when given an invalid string, it takes nearly two seconds to complete the test, over ten times as long as it took to test a valid string. The dramatic difference is due to the way regular expressions get evaluated.\r\n\r\nMost Regex engines will work very similarly (with minor differences). The engine will match the first possible way to accept the current character and proceed to the next one. If it then fails to match the next one, it will backtrack and see if there was another way to digest the previous character. If it goes too far down the rabbit hole only to find out the string doesn’t match in the end, and if many characters have multiple valid regex paths, the number of backtracking steps can become very large, resulting in what is known as _catastrophic backtracking_.\r\n\r\nLet's look at how our expression runs into this problem, using a shorter string: \"ACCCX\". While it seems fairly straightforward, there are still four different ways that the engine could match those three C's:\r\n1. CCC\r\n2. CC+C\r\n3. C+CC\r\n4. C+C+C.\r\n\r\nThe engine has to try each of those combinations to see if any of them potentially match against the expression. When you combine that with the other steps the engine must take, we can use [RegEx 101 debugger](https://regex101.com/debugger) to see the engine has to take a total of 38 steps before it can determine the string doesn't match.\r\n\r\nFrom there, the number of steps the engine must use to validate a string just continues to grow.\r\n\r\n| String | Number of C's | Number of steps |\r\n| -------|-------------:| -----:|\r\n| ACCCX | 3 | 38\r\n| ACCCCX | 4 | 71\r\n| ACCCCCX | 5 | 136\r\n| ACCCCCCCCCCCCCCX | 14 | 65,553\r\n\r\n\r\nBy the time the string includes 14 C's, the engine has to take over 65,000 steps just to see if the string is valid. These extreme situations can cause them to work very slowly (exponentially related to input size, as shown above), allowing an attacker to exploit this and can cause the service to excessively consume CPU, resulting in a Denial of Service.\n\n# Remediation\n\nUpgrade `System.Text.RegularExpressions` to version 4.3.1 or higher.\n\n\n# References\n\n- [GitHub Issue](https://github.com/dotnet/announcements/issues/111)\n\n- [Microsoft Security Advisory](https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2019-0820)\n"
+              },
+              "properties": {
+                "tags": [
+                  "security",
+                  "CWE-400",
+                  "nuget"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "SNYK-DOTNET-NUGETCOMMON-5709252",
+          "level": "error",
+          "message": {
+            "text": "This file introduces a vulnerable NuGet.Common package with a high severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SNYK-DOTNET-NUGETPROTOCOL-3043006",
+          "level": "error",
+          "message": {
+            "text": "This file introduces a vulnerable NuGet.Protocol package with a high severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SNYK-DOTNET-NUGETPROTOCOL-5709254",
+          "level": "error",
+          "message": {
+            "text": "This file introduces a vulnerable NuGet.Protocol package with a high severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SNYK-DOTNET-SYSTEMDRAWINGCOMMON-3063427",
+          "level": "error",
+          "message": {
+            "text": "This file introduces a vulnerable System.Drawing.Common package with a high severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SNYK-DOTNET-SYSTEMNETHTTP-60045",
+          "level": "error",
+          "message": {
+            "text": "This file introduces a vulnerable System.Net.Http package with a high severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SNYK-DOTNET-SYSTEMNETHTTP-60046",
+          "level": "error",
+          "message": {
+            "text": "This file introduces a vulnerable System.Net.Http package with a high severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SNYK-DOTNET-SYSTEMNETHTTP-60047",
+          "level": "error",
+          "message": {
+            "text": "This file introduces a vulnerable System.Net.Http package with a high severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SNYK-DOTNET-SYSTEMNETHTTP-60048",
+          "level": "warning",
+          "message": {
+            "text": "This file introduces a vulnerable System.Net.Http package with a medium severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SNYK-DOTNET-SYSTEMNETHTTP-72439",
+          "level": "error",
+          "message": {
+            "text": "This file introduces a vulnerable System.Net.Http package with a high severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SNYK-DOTNET-SYSTEMSECURITYCRYPTOGRAPHYXML-2977914",
+          "level": "warning",
+          "message": {
+            "text": "This file introduces a vulnerable System.Security.Cryptography.Xml package with a medium severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "SNYK-DOTNET-SYSTEMTEXTREGULAREXPRESSIONS-174708",
+          "level": "error",
+          "message": {
+            "text": "This file introduces a vulnerable System.Text.RegularExpressions package with a high severity vulnerability."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "obj/project.assets.json"
+                },
+                "region": {
+                  "startLine": 1
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
