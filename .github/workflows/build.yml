@@ -66,6 +66,7 @@ jobs:
     
     - name: Run Snyk to check for vulnerabilities
       run: |
+        cd bp/BPCalculator/ 
         snyk auth ${{ secrets.SNYK_TOKEN }}
         snyk test --sarif-file-output=snyk.sarif --severity-threshold=medium
 
