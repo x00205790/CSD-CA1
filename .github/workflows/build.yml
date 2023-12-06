@@ -41,7 +41,7 @@ jobs:
         gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
 
     - name: Publish Code Coverage
-      uses: b3b00/coverlet-action@1.2.5
+      uses: b3b00/coverlet-action@1.2.7
       with:
         testProject: 'bp/testing/unitTestProj.csproj'
         output: 'lcov.info'
