@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - main
+      - staging
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -76,6 +77,7 @@ jobs:
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: bp/BPCalculator/snyk.sarif
+
 
     - name: Publish
       run: dotnet publish bp/BPCalculator/BPCalculator.csproj -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
