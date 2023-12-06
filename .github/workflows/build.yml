@@ -60,21 +60,20 @@ jobs:
         cd bp/BPCalculator/   
         dotnet new sln --force
         dotnet sln add BPCalculator.csproj
-        ls -la
+        sudo apt update
+        sudo apt install nodejs npm
+        npm install snyk -g
     
     - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/dotnet@master 
-      continue-on-error: true # To make sure that SARIF upload gets called
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --sarif-file-output=snyk.sarif  --severity-threshold=medium
+      run: |
+        snyk auth ${{ secrets.SNYK_TOKEN }}
+        snyk test--sarif-file-output=snyk.sarif --severity-threshold=medium
 
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v2
       with:
         sarif_file: snyk.sarif
-        
+
     - name: Publish
       run: dotnet publish bp/BPCalculator/BPCalculator.csproj -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
 
