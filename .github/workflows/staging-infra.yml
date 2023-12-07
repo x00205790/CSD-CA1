@@ -1,3 +1,11 @@
+name: staging-tf-validation
+
+env:
+  TF_VAR_subscription: terraform.secrets.TF_VAR_SUBSCRIPTION
+  TF_VAR_tenant: terraform.secrets.TF_VAR_TENANT
+  TF_VAR_rg: terraform.secrets.TF_VAR_RG
+
+
 on:
   push:
     branches:
