@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: deploy
+        working-directory: tf-deploy
     permissions:
       contents: read
       pull-requests: write
