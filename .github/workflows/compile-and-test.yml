@@ -1,4 +1,4 @@
-name: BP_deployment
+name: BP_compile_and_test
 
 env:
   AZ_WEBAPP_NAME: cd-bpcalculator
