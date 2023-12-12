@@ -1,0 +1,25 @@
+name: housekeeping
+on:
+  workflow_dispatch:
+
+jobs:
+  delete-workflow-runs:
+    runs-on: ubuntu-latest
+    name: Delete old workflow runs
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Delete workflow runs
+        uses: ./ # Uses an action in the root directory
+        id: delete-old-workflow-runs
+        with:
+          repository: x00205790/CSD-CA1
+          workflow: ".github/workflows/build.yml"
+          older-than-seconds: 3600
+          # branch: main
+          # event: push
+          # event: completed
+          # what-if: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
