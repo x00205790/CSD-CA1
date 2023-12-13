@@ -1,5 +1,5 @@
 # Stage 1: Runtime
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 ENV ASPNETCORE_ENVIRONMENT Production
 WORKDIR app
 COPY ./publish/myapp/ .
