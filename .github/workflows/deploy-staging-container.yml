@@ -39,14 +39,19 @@ jobs:
           docker build . -t ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
           docker push ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
 
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZ_CREDENTIALS }}
+
     - name: 'Deploy to Azure Container Instances'
       uses: 'azure/aci-deploy@v1'
       with:
         resource-group: ${{ secrets.RG }}
-        dns-name-label: ${{ secrets.RG }}${{ github.run_number }}
+        dns-name-label: ${{ secrets.RG }}cdillon-bpcalc-staging
         image: ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
         registry-login-server: ${{ secrets.ACR }}
-        registry-username: ${{ secrets.ARM_CLIENT_ID }}
-        registry-password: ${{ secrets.ARM_CLIENT_SECRET }}
+        registry-username: ${{ secrets.ACR_USER }}
+        registry-password: ${{ secrets.ACR_SECRET }}
         name: bpcalculator-staging
         location: 'north europe'
