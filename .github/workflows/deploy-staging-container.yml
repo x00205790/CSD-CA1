@@ -25,5 +25,16 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         push: true
-        tags: ${{ secret.STAGING_CONTAINER_NAME }}
+        tags: ${{ secrets.STAGING_CONTAINER_NAME }}
 
+    - name: 'Deploy to Azure Container Instances'
+      uses: 'azure/aci-deploy@v1'
+      with:
+        resource-group: ${{ secrets.RG }}
+        dns-name-label: ${{ secrets.RG }}${{ github.run_number }}
+        image: ${{ secrets.ACR }}/sampleapp:${{ github.sha }}
+        registry-login-server: ${{ secrets.ACR }}
+        registry-username: ${{ secrets.ARM_CLIENT_ID }}
+        registry-password: ${{ secrets.ARM_CLIENT_SECRET }}
+        name: bpcalculator-staging
+        location: 'north europe'
