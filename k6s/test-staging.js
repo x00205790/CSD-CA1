@@ -1,15 +1,8 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
 
-export default function () {
-  const res = http.get('cdillon-bpcalc-staging.northeurope.azurecontainer.io');
-  sleep(1);
-}
-
-import http from 'k6/http';
-import { sleep } from 'k6';
-
 export const options = {
+  insecureSkipTLSVerify: true,
   duration: '1m',
   vus: 50,
   thresholds: {
@@ -19,6 +12,7 @@ export const options = {
 };
 
 export default function () {
-  const res = http.get('cdillon-bpcalc-staging.northeurope.azurecontainer.io');
+  const res = http.get('http://cdillon-bpcalc-staging.northeurope.azurecontainer.io');
   sleep(1);
 }
+
