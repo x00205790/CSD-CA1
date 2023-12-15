@@ -48,7 +48,7 @@ jobs:
       uses: 'azure/aci-deploy@v1'
       with:
         resource-group: ${{ secrets.RG }}
-        dns-name-label: ${{ secrets.RG }}cdillon-bpcalc-staging
+        dns-name-label: cdillon-bpcalc-staging
         image: ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
         registry-login-server: ${{ secrets.ACR }}
         registry-username: ${{ secrets.ACR_USER }}
