@@ -15,3 +15,4 @@ export default function () {
   const res = http.get('http://cdillon-bpcalc-staging.northeurope.azurecontainer.io');
   sleep(1);
 }
+
