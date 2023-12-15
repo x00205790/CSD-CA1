@@ -34,19 +34,16 @@ jobs:
         login-server: ${{ secrets.ACR }}
         username: ${{ secrets.ARM_CLIENT_ID }}
         password: ${{ secrets.ARM_CLIENT_SECRET }}
- 
-    - name: Build and push to ACR
-      uses: docker/build-push-action@v5
-      with:
-        push: true
-        tags: ${{ secrets.STAGING_CONTAINER_NAME }}
+    - run: |
+          docker build . -t ${{ secrets.ACR }}/sampleapp:${{ github.sha }}
+          docker push ${{ secrets.ACR }}/sampleapp:${{ github.sha }}
 
     - name: 'Deploy to Azure Container Instances'
       uses: 'azure/aci-deploy@v1'
       with:
         resource-group: ${{ secrets.RG }}
         dns-name-label: ${{ secrets.RG }}${{ github.run_number }}
-        image: ${{ secrets.ACR }}/sampleapp:${{ github.sha }}
+        image: ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
         registry-login-server: ${{ secrets.ACR }}
         registry-username: ${{ secrets.ARM_CLIENT_ID }}
         registry-password: ${{ secrets.ARM_CLIENT_SECRET }}
