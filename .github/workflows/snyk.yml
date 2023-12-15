@@ -1,0 +1,40 @@
+name: snyk scanning
+on:
+  push:
+      branches:
+      - '**'
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Prep for Snyk
+      run: |
+        cd bp/BPCalculator/   
+        dotnet new sln --force
+        dotnet sln add BPCalculator.csproj
+
+    - name: Restore dependencies
+      run: dotnet restore bp/BPCalculator/BPCalculator.sln
+     
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/dotnet@master
+      continue-on-error: true # To make sure that SARIF upload gets called
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --sarif-file-output=snyk.sarif --file=bp/BPCalculator/BPCalculator.sln
+
+    - name: Upload result to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: snyk.sarif

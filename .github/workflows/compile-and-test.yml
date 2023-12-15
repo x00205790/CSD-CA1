@@ -1,4 +1,4 @@
-name: BP_deployment
+name: compile-and-test-staging
 
 env:
   AZ_WEBAPP_NAME: cd-bpcalculator
@@ -7,8 +7,8 @@ env:
 on:
   push:
     branches:
-      - main
-      - staging
+      - '**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -55,29 +55,6 @@ jobs:
         name: DotNet Tests                  
         path: '/home/runner/work/CSD-CA1/CSD-CA1/bp/testing/TestResults/test-results.trx'
         reporter: 'dotnet-trx'  
-
-    - name: Prep for Snyk
-      run: |
-        cd bp/BPCalculator/   
-        dotnet new sln --force
-        dotnet sln add BPCalculator.csproj
-        sudo apt update
-        sudo apt install nodejs npm
-        npm install snyk -g
-    
-    - name: Run Snyk to check for vulnerabilities
-      continue-on-error: true
-      run: |
-        cd bp/BPCalculator/ 
-        snyk auth ${{ secrets.SNYK_TOKEN }}
-        snyk test --sarif-file-output=snyk.sarif --severity-threshold=medium
-        ls -la
-
-    - name: Upload result to GitHub Code Scanning
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: bp/BPCalculator/snyk.sarif
-
 
     - name: Publish
       run: dotnet publish bp/BPCalculator/BPCalculator.csproj -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
