@@ -5,11 +5,10 @@ env:
 
 on:
     workflow_run:
-        workflows: ["compile-and-test-staging"]
-        types:
-          - completed
-    workflow_dispatch:
-      
+        workflows: [compile-and-test-staging]
+        types: [completed]
+        branches: [staging]
+
 jobs:
   docker_build_push_acr:
     name: 'Docker Build and Push to ACR'
