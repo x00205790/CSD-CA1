@@ -28,12 +28,13 @@ jobs:
     - name: Publish
       run: dotnet publish bp/BPCalculator/BPCalculator.csproj -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
 
+###### Be aware that the following plugin requires the use of the admin user and does not support service principals
     - name: Login to ACR
       uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.ACR }}
-        username: ${{ secrets.ARM_CLIENT_ID }}
-        password: ${{ secrets.ARM_CLIENT_SECRET }}
+        username: ${{ secrets.ACR_USER }}
+        password: ${{ secrets.ACR_SECRET }}
     - run: |
           docker build . -t ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
           docker push ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
