@@ -1,13 +1,13 @@
-name: deploy-container
+name: deploy-staging-container
 
 env: 
   AZ_WEBAPP_PACKAGE_PATH: 'publish' 
 
 on:
-  push:
-    branches:
-      - staging
-
+    workflow_run:
+        workflows: ["compile-and-test-staging"]
+        types:
+          - completed
 jobs:
   docker_build_push_acr:
     name: 'Docker Build and Push to ACR'
