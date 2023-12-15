@@ -35,8 +35,8 @@ jobs:
         username: ${{ secrets.ARM_CLIENT_ID }}
         password: ${{ secrets.ARM_CLIENT_SECRET }}
     - run: |
-          docker build . -t ${{ secrets.ACR }}/sampleapp:${{ github.sha }}
-          docker push ${{ secrets.ACR }}/sampleapp:${{ github.sha }}
+          docker build . -t ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
+          docker push ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
 
     - name: 'Deploy to Azure Container Instances'
       uses: 'azure/aci-deploy@v1'
