@@ -10,7 +10,7 @@ jobs:
   zap-secuity-test:
     name: zap security test
     runs-on: ubuntu-latest
-
+    environment: staging
     steps:
     - name: Run local k6 test
       uses: zaproxy/action-baseline@v0.3.0
