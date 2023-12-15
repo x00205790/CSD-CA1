@@ -2,5 +2,5 @@
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 ENV ASPNETCORE_ENVIRONMENT Production
 WORKDIR app
-COPY ./publish/myapp/ .
+COPY ./bp/publish/myapp/ .
 ENTRYPOINT ["dotnet", "BPCalculator.dll"]

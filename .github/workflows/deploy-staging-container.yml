@@ -1,7 +1,7 @@
 name: deploy-staging-container
 
 env: 
-  AZ_WEBAPP_PACKAGE_PATH: 'publish' 
+  AZ_WEBAPP_PACKAGE_PATH: 'bp/publish' 
 
 on:
     workflow_run:

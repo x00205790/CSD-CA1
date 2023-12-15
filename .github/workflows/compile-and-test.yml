@@ -2,7 +2,7 @@ name: compile-and-test-staging
 
 env:
   AZ_WEBAPP_NAME: cd-bpcalculator
-  AZ_WEBAPP_PACKAGE_PATH: 'publish'
+  AZ_WEBAPP_PACKAGE_PATH: 'bp/publish'
 
 on:
   push:
