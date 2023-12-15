@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
-    - name: Run local k6 test
+    - name: ZAP security scan
       uses: zaproxy/action-baseline@v0.10.0
       with:
         target: 'http://cdillon-bpcalc-staging.northeurope.azurecontainer.io'
