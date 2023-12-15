@@ -29,9 +29,9 @@ jobs:
       run: dotnet publish bp/BPCalculator/BPCalculator.csproj -c Release -o '${{ env.AZ_WEBAPP_PACKAGE_PATH }}/myapp'
 
     - name: Login to ACR
-      uses: docker/login-action@v3
+      uses: azure/login-action@v3
       with:
-        registry: ${{ secrets.ACR }}
+        login-server: ${{ secrets.ACR }}
         username: ${{ secrets.ARM_CLIENT_ID }}
         password: ${{ secrets.ARM_CLIENT_SECRET }}
  
