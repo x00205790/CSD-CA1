@@ -1,8 +1,9 @@
 name: snyk scanning
 on:
-  push:
-      branches:
-      - '**'
+  workflow_dispatch:
+#  push:
+#      branches:
+#      - '**'
 
 jobs:
   security:

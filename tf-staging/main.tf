@@ -15,24 +15,28 @@ resource "azurerm_storage_share" "aci_caddy" {
 
 resource "azurerm_container_group" "bpcalc_stg" {
     name = "bpcalc-staging"
-    location = var.rg
+    location = var.location
+    resource_group_name = var.rg
     ip_address_type = "Public"
     dns_name_label = "cdillon-bpcalc-staging"
     os_type = "Linux"
-
+    
+    exposed_port = [
+        {
+            port     = 8081,
+            protocol = "TCP"
+        },
+        {
+            port     = 443,
+            protocol = "TCP"
+        }
+    ]
     container {
         name = "bpcalculator-staging"
         image = "cdillonacipoc.azurecr.io/bpcalculator-staging:latest"
         cpu = "0.5"
         memory = "0.5"
     
-    exposed_port = [
-        {
-            port = 443,
-            protocol = "TCP"
-        }
-    ]
-
     ports {
         port = 8081
         protocol = "TCP"
@@ -44,7 +48,7 @@ resource "azurerm_container_group" "bpcalc_stg" {
         image = "caddy"
         memory = "0.5"
         cpu = "0.5"
-
+    
     ports {
         port = 443
         protocol = "TCP"
