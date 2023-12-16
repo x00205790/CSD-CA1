@@ -60,7 +60,7 @@ jobs:
   terraform:
     name: Plan / Apply
     runs-on: ubuntu-latest
-    needs: create-storage-acct
+    needs: docker_build_push_acr
     defaults:
       run:
         working-directory: tf-staging
