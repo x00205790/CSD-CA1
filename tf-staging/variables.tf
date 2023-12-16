@@ -9,6 +9,8 @@ variable "acr_user"{}
 
 variable "acr_pass"{}
 
+variable "acr_image" {}
+
 variable "location" {
   type        = string
   description = "Location of Resources"

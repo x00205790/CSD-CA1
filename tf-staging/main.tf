@@ -33,7 +33,7 @@ resource "azurerm_container_group" "bpcalc_stg" {
     ]
     container {
         name = "bpcalculator-staging"
-        image = "cdillonacipoc.azurecr.io/bpcalculator-staging:latest"
+        image = var.acr_image
         cpu = "0.5"
         memory = "0.5"
     
