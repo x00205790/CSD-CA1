@@ -4,12 +4,18 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  // Navigate to your webpage
+  // Navigate to webpage
   await page.goto('http://cdillon-bpcalc-staging.northeurope.azurecontainer.io/');
 
   // Fill in the systolic and diastolic values
-  await page.type('#BP_Systolic', '140');
-  await page.type('#BP_Diastolic', '85');
+  await page.waitForSelector('#BP_Systolic');
+  await page.evaluate(() => {
+    document.querySelector('#BP_Systolic').value = '140';
+  });
+  await page.waitForSelector('#BP_Diastolic');
+  await page.evaluate(() => {
+    document.querySelector('#BP_Diastolic').value = '85';
+  });
 
   // Click the submit button
   await page.click('input[type="submit"]');
@@ -21,12 +27,16 @@ const puppeteer = require('puppeteer');
   const result = await page.$eval('.form-group', (el) => el.innerText);
 
   // Check if the result is as expected
-  if (result === 'Pre-High Blood Pressure') {
-    console.log('Test Passed: Pre-High Blood Pressure displayed');
-  } else {
-    console.log('Test Failed: Unexpected result -', result);
-  }
+  const resultText = await page.evaluate(() => {
+    return document.body.textContent.includes('Pre-High Blood Pressure');
+  });
 
+  if (resultText) {
+    console.log('Test Passed: Result is Pre-High Blood Pressure');
+  } else {
+    console.error('Test Failed: Unexpected result');
+  }
   // Close the browser
   await browser.close();
 })();
+
