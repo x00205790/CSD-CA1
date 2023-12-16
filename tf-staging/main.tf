@@ -20,6 +20,11 @@ resource "azurerm_container_group" "bpcalc_stg" {
     ip_address_type = "Public"
     dns_name_label = "cdillon-bpcalc-staging"
     os_type = "Linux"
+    
+    exposed_port = {
+            port = 443,
+            protocol = "TCP"
+        }
 
     container {
         name = "bpcalculator-staging"
@@ -27,13 +32,6 @@ resource "azurerm_container_group" "bpcalc_stg" {
         cpu = "0.5"
         memory = "0.5"
     
-    exposed_port = [
-        {
-            port = 443,
-            protocol = "TCP"
-        }
-    ]
-
     ports {
         port = 8081
         protocol = "TCP"
@@ -46,12 +44,6 @@ resource "azurerm_container_group" "bpcalc_stg" {
         memory = "0.5"
         cpu = "0.5"
     
-    exposed_port = [
-        {
-            port = 443,
-            protocol = "TCP"
-        }
-    ]
     ports {
         port = 443
         protocol = "TCP"
