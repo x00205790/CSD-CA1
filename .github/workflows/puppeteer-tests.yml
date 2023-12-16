@@ -1,6 +1,7 @@
 name: puppeteer-e2e
-on:
-    workflow_run:
+on: [workflow_dispatch]
+
+#    workflow_run:
 #        workflows: ["zap-scan"]
 #        types: [completed]
 #        branches: 
