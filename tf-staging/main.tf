@@ -23,7 +23,7 @@ resource "azurerm_container_group" "bpcalc_stg" {
     
     exposed_port = [
         {
-            port     = 8081,
+            port     = 80,
             protocol = "TCP"
         },
         {
@@ -38,7 +38,7 @@ resource "azurerm_container_group" "bpcalc_stg" {
         memory = "0.5"
     
     ports {
-        port = 8081
+        port = 80
         protocol = "TCP"
     }
     }
@@ -68,6 +68,6 @@ resource "azurerm_container_group" "bpcalc_stg" {
         share_name = azurerm_storage_share.aci_caddy.name
     }
 
-    commands = ["caddy", "reverse-proxy", "--from", "cdillon-bpcalc-staging.northeurope.azurecontainer.io", "--to", "localhost:8081"]
+    commands = ["caddy", "reverse-proxy", "--from", "cdillon-bpcalc-staging.northeurope.azurecontainer.io", "--to", "localhost:80"]
     }
 }
