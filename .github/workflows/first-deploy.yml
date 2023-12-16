@@ -21,11 +21,15 @@ jobs:
         azcliversion: 2.30.0
         inlineScript: |
           az storage account create -n ${{ secrets.STORAGE_ACCOUNT }} -g ${{ secrets.RG }} -l northeurope --sku Standard_LRS
+          az storage container create -n terraform-deploy --account-name ${{ secrets.STORAGE_ACCOUNT }} --auth-mode login
+          az storage container create -n terraform-stg --account-name ${{ secrets.STORAGE_ACCOUNT }} --auth-mode login
+          az storage container create -n terraform-prod --account-name ${{ secrets.STORAGE_ACCOUNT }} --auth-mode login
 
   terraform:
     name: Plan / Apply
     runs-on: ubuntu-latest
     environment: terraform
+    needs: create-storage-acct
     defaults:
       run:
         working-directory: terraform-deploy
@@ -46,9 +50,11 @@ jobs:
         ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
         ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-        RESOURCE_GROUP: ${{ secrets.RG }}
-        STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
-        CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+        TF_VAR_RESOURCE_GROUP: ${{ secrets.RG }}
+        TF_VAR_STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
+        TF_VAR_CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+        TF_VAR_tenant: ${{ secrets.ARM_TENANT_ID }}
+        TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       run: terraform init
       continue-on-error: false
 

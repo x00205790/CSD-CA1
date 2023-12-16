@@ -2,14 +2,14 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.85.0"
+      version = "=3.7.0"
     }
   }
   
   backend "azurerm" {
     resource_group_name      = "aci_poc"
     storage_account_name     = "cdillonacistorage"
-    container_name           = "terraform-deploy"
+    container_name           = "terraform-stg"
     key                      = "terraform.tfstate"
   }
 }
