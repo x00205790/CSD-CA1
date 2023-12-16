@@ -12,6 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: ZAP security scan
       uses: zaproxy/action-baseline@v0.10.0
       #### Use continue on error because container exits with code 2 if issues are found
