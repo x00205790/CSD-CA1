@@ -1,7 +1,7 @@
 name: zap-scan
 on:
     workflow_run:
-        workflows: ["compile-and-test-staging"]
+        workflows: ["deploy-staging-container"]
         types: [completed]
         branches: 
           - 'staging'
