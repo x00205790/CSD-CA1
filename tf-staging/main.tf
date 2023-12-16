@@ -22,7 +22,7 @@ resource "azurerm_container_group" "bpcalc_stg" {
     os_type = "Linux"
     
     exposed_port = {
-            port = 443,
+            port = 443
             protocol = "TCP"
         }
 
