@@ -43,6 +43,12 @@ resource "azurerm_container_group" "bpcalc_stg" {
     }
     }
 
+    image_registry_credential {
+        username = var.acr_user
+        password = var.acr_pass
+        server   = "cdillonacipoc.azurecr.io" 
+    }
+
     container {
         name = "caddy-stg"
         image = "caddy"

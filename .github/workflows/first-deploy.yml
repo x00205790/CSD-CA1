@@ -3,31 +3,31 @@ on:
   workflow_dispatch:
 
 jobs:
-#  create-storage-acct:
-#    runs-on: ubuntu-latest
-#    steps:
-#    - name: Checkout
-#      uses: actions/checkout@v3
-#
-#    - name: Azure login
-#      uses: azure/login@v1
-#      with:
-#        creds: ${{ secrets.AZ_CREDENTIALS }}
-#
-#    - name: Create storage account
-#      uses: azure/CLI@v1
-#      with:
-#        azcliversion: 2.30.0
-#        inlineScript: |
-#          az storage account create -n ${{ secrets.STORAGE_ACCOUNT }} -g ${{ secrets.RG }} -l northeurope --sku Standard_LRS
-#          az storage container create -n terraform-deploy --account-name ${{ secrets.STORAGE_ACCOUNT }} --auth-mode login
-#          az storage container create -n terraform-stg --account-name ${{ secrets.STORAGE_ACCOUNT }} --auth-mode login
-#          az storage container create -n terraform-prod --account-name ${{ secrets.STORAGE_ACCOUNT }} --auth-mode login
+  create-storage-acct:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZ_CREDENTIALS }}
+
+    - name: Create storage account
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.30.0
+        inlineScript: |
+          az storage account create -n ${{ secrets.STORAGE_ACCOUNT }} -g ${{ secrets.RG }} -l northeurope --sku Standard_LRS
+          az storage container create -n terraform-deploy --account-name ${{ secrets.STORAGE_ACCOUNT }} --auth-mode login
+          az storage container create -n terraform-stg --account-name ${{ secrets.STORAGE_ACCOUNT }} --auth-mode login
+          az storage container create -n terraform-prod --account-name ${{ secrets.STORAGE_ACCOUNT }} --auth-mode login
 
   terraform:
     name: Plan / Apply
     runs-on: ubuntu-latest
-    #needs: create-storage-acct
+    needs: create-storage-acct
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}

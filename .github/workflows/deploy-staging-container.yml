@@ -4,12 +4,11 @@ env:
   AZ_WEBAPP_PACKAGE_PATH: 'bp/publish' 
 
 on:
-  workflow_dispatch:
-#    workflow_run:
-#        workflows: ["compile-and-test-staging"]
-#        types: [completed]
-#        branches: 
-#          - 'staging'
+    workflow_run:
+        workflows: ["compile-and-test-staging"]
+        types: [completed]
+        branches: 
+          - 'staging'
 
 jobs:
   docker_build_push_acr:
@@ -62,6 +61,18 @@ jobs:
     name: Plan / Apply
     runs-on: ubuntu-latest
     needs: docker_build_push_acr
+    env:
+      ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+      ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      TF_VAR_rg: ${{ secrets.RG }}
+      TF_VAR_STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
+      TF_VAR_CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+      TF_VAR_tenant: ${{ secrets.ARM_TENANT_ID }}
+      TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+      TF_VAR_acr_user: ${{ secrets.ACR_USER }}
+      TF_VAR_acr_pass: ${{ secrets.ACR_SECRET }}
     defaults:
       run:
         working-directory: tf-staging
@@ -72,21 +83,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZ_CREDENTIALS }}
+
     - name: Use Terraform
       uses: hashicorp/setup-terraform@v2
 
     - name: Terraform Init
       id: init
-      env:
-        ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-        ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-        ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-        TF_VAR_rg: ${{ secrets.RG }}
-        TF_VAR_STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
-        TF_VAR_CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
-        TF_VAR_tenant: ${{ secrets.ARM_TENANT_ID }}
-        TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       run: terraform init
       continue-on-error: false
 
@@ -101,15 +107,5 @@ jobs:
       continue-on-error: false
 
     - name: Terraform Apply
-      env:
-        ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
-        ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-        ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-        TF_VAR_rg: ${{ secrets.RG }}
-        TF_VAR_STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
-        TF_VAR_CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
-        TF_VAR_tenant: ${{ secrets.ARM_TENANT_ID }}
-        TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       run: terraform apply -auto-approve -input=false
       continue-on-error: false
