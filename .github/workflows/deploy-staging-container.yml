@@ -102,5 +102,15 @@ jobs:
       continue-on-error: false
 
     - name: Terraform Apply
+      env:
+        ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+        ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+        TF_VAR_rg: ${{ secrets.RG }}
+        TF_VAR_STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
+        TF_VAR_CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+        TF_VAR_tenant: ${{ secrets.ARM_TENANT_ID }}
+        TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       run: terraform apply -auto-approve -input=false
       continue-on-error: false
