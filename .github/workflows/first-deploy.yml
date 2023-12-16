@@ -21,7 +21,7 @@ jobs:
         azcliversion: 2.30.0
         inlineScript: |
           az storage account create -n ${{ secrets.STORAGE_ACCOUNT }} -g ${{ secrets.RG }} -l northeurope --sku Standard_LRS
-          az storage container create -n terraform
+          az storage container create -n terraform --account-name ${{ secrets.STORAGE_ACCOUNT }} --auth-mode login
 
   terraform:
     name: Plan / Apply

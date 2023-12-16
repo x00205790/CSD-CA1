@@ -22,5 +22,42 @@ resource "azurerm_container_group" "bpcalc_stg" {
 
     container {
         name = "bpcalculator-staging"
+        image = "cdillonacipoc.azurecr.io/bpcalculator-staging:latest"
+        cpu = "0.5"
+        memory = "0.5"
+    
+    exposed_port = [
+        {
+            port = 443,
+            protocol = "TCP"
+        }
+    ]
+
+    ports {
+        port = 8081
+        protocol = "TCP"
+    }
+    }
+
+    container {
+        name = "caddy-stg"
+        image = "caddy"
+        memory = "0.5"
+        cpu = "0.5"
+
+    ports {
+        port = 443
+        protocol = "TCP"
+    }
+
+    volume {
+        name = "aci-caddy-data"
+        mount_path = "/data"
+        storage_account_name = azurerm_storage_account.caddy-stg.name
+        storage_account_key = azurerm_storage_account.caddy-stg.primary_access_key
+        share_name = azurerm_storage_share.aci_caddy.name
+    }
+
+    commands = ["caddy", "reverse-proxy", "--from", "cdillon-bpcalc-staging.northeurope.azurecontainer.io", "--to", "localhost:8081"]
     }
 }

@@ -3,6 +3,7 @@ resource "azurerm_container_registry" "acr" {
   resource_group_name = var.rg
   location            = "north_europe"
   sku                 = "Standard"
+  admin_enabled       = true  
 }
 
 resource "azurerm_storage_share" "caddy" {

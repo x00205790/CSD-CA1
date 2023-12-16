@@ -46,14 +46,14 @@ jobs:
       with:
         creds: ${{ secrets.AZ_CREDENTIALS }}
 
-    - name: 'Deploy to Azure Container Instances'
-      uses: 'azure/aci-deploy@v1'
-      with:
-        resource-group: ${{ secrets.RG }}
-        dns-name-label: cdillon-bpcalc-staging
-        image: ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
-        registry-login-server: ${{ secrets.ACR }}
-        registry-username: ${{ secrets.ACR_USER }}
-        registry-password: ${{ secrets.ACR_SECRET }}
-        name: bpcalculator-staging
-        location: 'north europe'
+#    - name: 'Deploy to Azure Container Instances'
+#      uses: 'azure/aci-deploy@v1'
+#      with:
+#        resource-group: ${{ secrets.RG }}
+#        dns-name-label: cdillon-bpcalc-staging
+#        image: ${{ secrets.ACR }}/bpcalculator-staging:${{ github.sha }}
+#        registry-login-server: ${{ secrets.ACR }}
+#        registry-username: ${{ secrets.ACR_USER }}
+#        registry-password: ${{ secrets.ACR_SECRET }}
+#        name: bpcalculator-staging
+#        location: 'north europe'
