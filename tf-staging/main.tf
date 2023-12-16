@@ -21,11 +21,16 @@ resource "azurerm_container_group" "bpcalc_stg" {
     dns_name_label = "cdillon-bpcalc-staging"
     os_type = "Linux"
     
-    exposed_port = {
-            port = 443
+    exposed_port = [
+        {
+            port     = 8081,
+            protocol = "TCP"
+        },
+        {
+            port     = 443,
             protocol = "TCP"
         }
-
+    ]
     container {
         name = "bpcalculator-staging"
         image = "cdillonacipoc.azurecr.io/bpcalculator-staging:latest"
