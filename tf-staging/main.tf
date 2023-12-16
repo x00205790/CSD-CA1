@@ -23,13 +23,17 @@ resource "azurerm_container_group" "bpcalc_stg" {
     
     exposed_port = [
         {
-            port     = 80,
-            protocol = "TCP"
-        },
-        {
-            port     = 443,
+            port     = 15672,
             protocol = "TCP"
         }
+#        {
+#            port     = 80,
+#            protocol = "TCP"
+#        },
+#        {
+#            port     = 443,
+#            protocol = "TCP"
+#        }
     ]
     container {
         name = "bpcalculator-staging"
@@ -38,7 +42,7 @@ resource "azurerm_container_group" "bpcalc_stg" {
         memory = "0.5"
     
     ports {
-        port = 5600
+        port = 15672
         protocol = "TCP"
     }
     }
@@ -49,30 +53,30 @@ resource "azurerm_container_group" "bpcalc_stg" {
         server   = "cdillonacipoc.azurecr.io" 
     }
 
-    container {
-        name = "caddy-stg"
-        image = "caddy"
-        memory = "0.5"
-        cpu = "0.5"
-    
-    ports {
-        port = 80
-        protocol = "TCP"
-    }
-
-    ports {
-        port = 443
-        protocol = "TCP"
-    }
-
-    volume {
-        name = "aci-caddy-data"
-        mount_path = "/data"
-        storage_account_name = azurerm_storage_account.caddy-stg.name
-        storage_account_key = azurerm_storage_account.caddy-stg.primary_access_key
-        share_name = azurerm_storage_share.aci_caddy.name
-    }
-
-    commands = ["caddy", "reverse-proxy", "--from", "cdillon-bpcalc-staging.northeurope.azurecontainer.io", "--to", "localhost:5600"]
-    }
+#    container {
+#        name = "caddy-stg"
+#        image = "caddy"
+#        memory = "0.5"
+#        cpu = "0.5"
+#   
+#    ports {
+#        port = 80
+#        protocol = "TCP"
+#    }
+#
+#    ports {
+#        port = 443
+#        protocol = "TCP"
+#    }
+#
+#    volume {
+#        name = "aci-caddy-data"
+#        mount_path = "/data"
+#        storage_account_name = azurerm_storage_account.caddy-stg.name
+#        storage_account_key = azurerm_storage_account.caddy-stg.primary_access_key
+#        share_name = azurerm_storage_share.aci_caddy.name
+#    }
+#
+#    commands = ["caddy", "reverse-proxy", "--from", "cdillon-bpcalc-staging.northeurope.azurecontainer.io", "--to", "localhost:5600"]
+#    }
 }
