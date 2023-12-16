@@ -23,3 +23,8 @@ jobs:
         with:
           files: |
             puppeteer/staging-test.js
+
+      - name: Open Pull Request
+        if: success()
+        run: |
+          gh pr create --base main --head staging --title "Merge Staging to Main" --body "Successful staging deployment, merge to main."
