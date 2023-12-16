@@ -19,7 +19,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Setup .NET
+    - name: Setup .NETvariable "app_name" {
+  type        = string
+  description = "name of the app"
+  default     = "hobbes"
+}
+
+variable "location" {
+  type        = string
+  description = "Location of Resources"
+  default     = "westeurope"
+}
+
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
