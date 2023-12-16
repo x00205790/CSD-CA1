@@ -4,11 +4,12 @@ env:
   AZ_WEBAPP_PACKAGE_PATH: 'bp/publish' 
 
 on:
-    workflow_run:
-        workflows: ["compile-and-test-staging"]
-        types: [completed]
-        branches: 
-          - 'staging'
+  workflow_dispatch:
+#    workflow_run:
+#        workflows: ["compile-and-test-staging"]
+#        types: [completed]
+#        branches: 
+#          - 'staging'
 
 jobs:
   docker_build_push_acr:
