@@ -28,7 +28,6 @@ jobs:
   terraform:
     name: Plan / Apply
     runs-on: ubuntu-latest
-    environment: terraform
     needs: create-storage-acct
     defaults:
       run:
