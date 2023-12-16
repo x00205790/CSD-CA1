@@ -7,17 +7,14 @@ terraform {
   }
   
   backend "azurerm" {
-    tenant_id                = var.tenant
-    subscription_id          = var.subscription_id
-    resource_group_name      = var.rg
-    storage_account_name     = var.storage_account_name
-    container_name           = var.storage_container
+    resource_group_name      = "aci_poc"
+    storage_account_name     = "cdillonacistorage"
+    container_name           = "terraform-deploy"
     key                      = "terraform.tfstate"
   }
+}
 
 provider "azurerm" {
   features {}
     skip_provider_registration = "true"
-}
-
 }
