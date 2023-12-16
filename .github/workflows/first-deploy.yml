@@ -46,9 +46,11 @@ jobs:
         ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
         ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
         ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-        RESOURCE_GROUP: ${{ secrets.RG }}
-        STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
-        CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+        TF_VAR_RESOURCE_GROUP: ${{ secrets.RG }}
+        TF_VAR_STORAGE_ACCOUNT: ${{ secrets.STORAGE_ACCOUNT }}
+        TF_VAR_CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+        TF_VAR_tenant: ${{ secrets.ARM_TENANT_ID }}
+        TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       run: terraform init
       continue-on-error: false
 
