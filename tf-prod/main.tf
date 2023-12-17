@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "caddy-prod" {
-    name = "acicaddytf"
+    name = "acicaddytfprod"
     resource_group_name = var.rg 
     location = var.location
     account_tier = "Standard"
