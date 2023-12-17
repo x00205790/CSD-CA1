@@ -1,4 +1,4 @@
-name: compile-test-deploy-staging
+name: compile-test-deploy-prod
 
 env:
   AZ_WEBAPP_NAME: cd-bpcalculator
