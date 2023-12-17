@@ -3,10 +3,10 @@ name: deploy-container
 env: 
   AZ_WEBAPP_PACKAGE_PATH: 'bp/publish' 
 
-on:
-    workflow_run:
-        workflows: ["compile-and-test"]
-        types: [completed]
+#on:
+#    workflow_run:
+#        workflows: ["compile-and-test"]
+#        types: [completed]
 
 jobs:
   set-environment:
