@@ -1,9 +1,10 @@
 name: snyk scanning
 on:
   workflow_dispatch:
-#  push:
-#      branches:
-#      - '**'
+  push:
+      branches:
+      - 'staging'
+      - 'production'
 
 jobs:
   security:
