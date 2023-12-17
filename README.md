@@ -5,9 +5,9 @@
 ## Initial build
 The initial build is contained in the first-deploy.yml workflow. This workflow uses a combination of Azure CLI and Terraform to create the initial storage accounts, and container registry.
 
-## Staging pipeline
-The staging pipeline runs with multiple jobs within multiple workflows.
+## Pipelines
+The workflows are compile-and-test-prod and compile-and-test-stg and the environment for each is tied to the respective branches, these workflows cannot be triggered on any other branches.
 
-compile-and-test-staging --> deploy-staging-container --> zap-scan --> k6s-load-test
+## Housekeeping
+There is a housekeeping workflow which can be used to remove old and obsolete workflows.
 
-### Compile and testing
