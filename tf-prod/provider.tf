@@ -9,7 +9,7 @@ terraform {
   backend "azurerm" {
     resource_group_name      = "aci_poc"
     storage_account_name     = "cdillonacistorage"
-    container_name           = "terraform-stg"
+    container_name           = "terraform-prod"
     key                      = "terraform.tfstate"
   }
 }
