@@ -48,6 +48,7 @@ jobs:
         username: ${{ secrets.ACR_USER }}
         password: ${{ secrets.ACR_SECRET }}
     - run: |
+          echo ${{ env.CONTAINER_NAME }}
           docker build . -t ${{ secrets.ACR }}/${{ env.CONTAINER_NAME }}:${{ github.sha }}
           docker push ${{ secrets.ACR }}/${{ env.CONTAINER_NAME }}:${{ github.sha }}
 
