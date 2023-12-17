@@ -185,7 +185,7 @@ jobs:
       #### Use continue on error because container exits with code 2 if issues are found
       continue-on-error: true
       with:
-        target: 'http://cdillon-bpcalc-staging.northeurope.azurecontainer.io'
+        target: 'https://cdillon-bpcalc-staging.northeurope.azurecontainer.io'
 
   puppeteer:
     runs-on: ubuntu-latest
