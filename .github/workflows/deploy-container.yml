@@ -43,7 +43,7 @@ jobs:
           docker build . -t ${{ secrets.ACR }}/${{ env.CONTAINER_NAME }}:${{ github.sha }}
           docker push ${{ secrets.ACR }}/${{ env.CONTAINER_NAME }}:${{ github.sha }}
 
-  terraform-staging:
+  terraform:
     name: Plan / Apply
     runs-on: ubuntu-latest
     environment: staging
@@ -60,7 +60,7 @@ jobs:
       TF_VAR_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       TF_VAR_acr_user: ${{ secrets.ACR_USER }}
       TF_VAR_acr_pass: ${{ secrets.ACR_SECRET }}
-      TF_VAR_acr_image: ${{ secrets.ACR }}/${{ env.CONTAINER_NAME }}:${{ github.sha }}
+      TF_VAR_acr_image: ${{ secrets.ACR }}/${{ secrets.CONTAINER_NAME }}:${{ github.sha }}
     defaults:
       run:
         working-directory: ${{ env.TF_WORKING_DIR }}
