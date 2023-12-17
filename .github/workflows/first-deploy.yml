@@ -5,6 +5,7 @@ on:
 jobs:
   create-storage-acct:
     runs-on: ubuntu-latest
+    environment: Terraform
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -27,6 +28,7 @@ jobs:
   terraform:
     name: Plan / Apply
     runs-on: ubuntu-latest
+    environment: Terraform
     needs: create-storage-acct
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}

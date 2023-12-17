@@ -1,12 +1,13 @@
 name: k6s-load-test
 on:
     workflow_run:
-        workflows: ["deploy-staging-container"]
+        workflows: ["deploy-container"]
         types: [completed]
         branches: 
           - 'staging'
+          - 'production'
 jobs:
-  k6s-load-test:
+  k6s-stg-test:
     name: k6 Load Test
     runs-on: ubuntu-latest
     environment: 
@@ -19,3 +20,17 @@ jobs:
       uses: grafana/k6-action@v0.3.1
       with:
         filename: k6s/test-staging.js
+
+  k6s-prod-test:
+    name: k6 Load Test
+    runs-on: ubuntu-latest
+    environment: 
+      name: staging
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Run local k6 test
+      uses: grafana/k6-action@v0.3.1
+      with:
+        filename: k6s/test-prod.js

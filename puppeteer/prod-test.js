@@ -5,7 +5,7 @@ const puppeteer = require('puppeteer');
   const page = await browser.newPage();
 
   // Navigate to webpage
-  await page.goto('https://cdillon-bpcalc-staging.northeurope.azurecontainer.io/');
+  await page.goto('https://cdillon-bpcalc.northeurope.azurecontainer.io/');
 
   // Fill in the systolic and diastolic values
   await page.waitForSelector('#BP_Systolic');
