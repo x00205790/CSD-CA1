@@ -1,13 +1,11 @@
-name: compile-and-test-staging
+name: compile-and-test
 
 env:
   AZ_WEBAPP_NAME: cd-bpcalculator
   AZ_WEBAPP_PACKAGE_PATH: 'bp/publish'
 
 on:
-  push:
-    branches:
-      - '**'
+  workflow_dispatch:
 
 jobs:
   build:
