@@ -202,11 +202,6 @@ jobs:
           files: |
             puppeteer/staging-test.js
 
-      - name: Open Pull Request
-        if: success()
-        run: |
-          gh pr create --base main --head staging --title "Merge Staging to Main" --body "Successful staging deployment, merge to main."
-
   k6s-load-test:
     name: k6 Load Test
     runs-on: ubuntu-latest
