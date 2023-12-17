@@ -1,0 +1,53 @@
+name: puppeteer-e2e
+on:
+    workflow_run:
+        workflows: ["zap-scan"]
+        types: [completed]
+        branches: 
+          - 'staging'
+          - 'production'
+
+jobs:
+  build_stg:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+
+      - uses: actions/checkout@v4
+      - name: Puppeteer test
+        uses: tj-actions/puppeteer@v5
+        id: puppeteer
+        with:
+          files: |
+            puppeteer/staging-test.js
+
+      - name: Open Pull Request
+        if: success()
+        run: |
+          gh pr create --base main --head staging --title "Merge Staging to Main" --body "Successful staging deployment, merge to main."
+
+  build_prod:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+
+      - uses: actions/checkout@v4
+      - name: Puppeteer test
+        uses: tj-actions/puppeteer@v5
+        id: puppeteer
+        with:
+          files: |
+            puppeteer/prod-test.js
+
+      - name: Open Pull Request
+        if: success()
+        run: |
+          gh pr create --base main --head staging --title "Merge Staging to Main" --body "Successful staging deployment, merge to main."

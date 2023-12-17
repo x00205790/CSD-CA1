@@ -1,13 +1,11 @@
-name: compile-and-test-staging
+name: compile-and-test
 
 env:
   AZ_WEBAPP_NAME: cd-bpcalculator
-  AZ_WEBAPP_PACKAGE_PATH: 'publish'
+  AZ_WEBAPP_PACKAGE_PATH: 'bp/publish'
 
 on:
-  push:
-    branches:
-      - '**'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,10 +13,10 @@ jobs:
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 6.0.x
 
@@ -42,7 +40,7 @@ jobs:
         gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}       
 
     - name: Publish Code Coverage
-      uses: b3b00/coverlet-action@1.2.7
+      uses: b3b00/coverlet-action@1.2.8
       with:
         testProject: 'bp/testing/unitTestProj.csproj'
         output: 'lcov.info'
