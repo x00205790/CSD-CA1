@@ -47,7 +47,7 @@ jobs:
     name: Plan / Apply
     runs-on: ubuntu-latest
     environment: staging
-    needs: docker_build_push_staging
+    needs: docker_build_push
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
