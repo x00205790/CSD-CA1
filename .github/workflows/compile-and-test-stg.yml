@@ -181,7 +181,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: ZAP security scan
-      uses: zaproxy/action-baseline@v0.10.0
+      uses: zaproxy/action-baseline@v0.11.0
       #### Use continue on error because container exits with code 2 if issues are found
       continue-on-error: true
       with:
