@@ -16,7 +16,7 @@ jobs:
         creds: ${{ secrets.AZ_CREDENTIALS }}
 
     - name: Create storage account
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       with:
         azcliversion: 2.30.0
         inlineScript: |
