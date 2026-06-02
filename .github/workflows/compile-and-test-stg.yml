@@ -13,7 +13,7 @@ jobs:
     environment: staging
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -61,7 +61,7 @@ jobs:
     environment: staging
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -98,7 +98,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -148,7 +148,7 @@ jobs:
       pull-requests: write
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Use Terraform
       uses: hashicorp/setup-terraform@v3
@@ -178,7 +178,7 @@ jobs:
     environment: staging
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: ZAP security scan
       uses: zaproxy/action-baseline@v0.10.0
@@ -193,8 +193,8 @@ jobs:
     environment: staging
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
 
       - name: Puppeteer test
         uses: tj-actions/puppeteer@v5
@@ -210,7 +210,7 @@ jobs:
     environment: staging
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
     
     - name: Run local k6 test
       uses: grafana/k6-action@v0.3.1
