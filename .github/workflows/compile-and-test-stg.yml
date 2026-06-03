@@ -113,7 +113,7 @@ jobs:
 
 ###### Be aware that the following plugin requires the use of the admin user and does not support service principals
     - name: Login to ACR
-      uses: azure/docker-login@v1
+      uses: azure/docker-login@v2
       with:
         login-server: ${{ secrets.ACR }}
         username: ${{ secrets.ACR_USER }}
