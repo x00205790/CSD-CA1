@@ -48,7 +48,7 @@ jobs:
         excludes: '[program]*,[test]test.*'
     
     - name: Publish Unit Test Results
-      uses: dorny/test-reporter@v1
+      uses: dorny/test-reporter@v3
       with:
         name: DotNet Tests                  
         path: '/home/runner/work/CSD-CA1/CSD-CA1/bp/testing/TestResults/test-results.trx'
